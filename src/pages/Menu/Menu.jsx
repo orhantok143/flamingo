@@ -39,10 +39,10 @@ const Menu = () => {
   //   ?.filter((c) => c.title === currentCategory)[0]
   //   ?.subCategory.filter((d) => d.subCategory === currentSubCategory)[0];
 
-  // console.log("product::", products);
+  console.log("currentSubCategory::", currentSubCategory);
 
   // const myStyle = {
-  //   background: `url(${cat ? cat?.image.url : img})`,
+  //   background: `url(${cat?.image.url})`,
   // };
 
   const settings = {
@@ -70,7 +70,15 @@ const Menu = () => {
         breakpoint: 480,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
+          // Infinity: false,
+        },
+      },
+      {
+        breakpoint: 400,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
           // Infinity: false,
         },
       },
@@ -96,6 +104,9 @@ const Menu = () => {
               ?.filter((c) => c.title === currentCategory)[0]
               ?.subCategory.map((category, i) => (
                 <Link
+                  className={
+                    category.subCategory === currentSubCategory ? "active" : ""
+                  }
                   key={i}
                   to=""
                   onClick={() => setCurrentSubCategory(category.subCategory)}
@@ -111,7 +122,7 @@ const Menu = () => {
           slidesPerGroupSkip={3}
           grid={{
             rows: 3,
-            // culomns: 3,
+            // culomns: 2,
             fill: "row",
           }}
           spaceBetween={3}
