@@ -13,7 +13,7 @@ import { Grid } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../../redux/category/categorySlice";
 import { getProducts } from "../../redux/product/productSlice";
-import img from "../../assets/images/bg.jpg";
+// import img from "../../assets/images/bg.jpg";
 
 // Import Swiper styles
 import "swiper/css";
@@ -35,17 +35,15 @@ const Menu = () => {
   );
   const categories = useSelector((state) => state.categories.categories);
 
-  let cat = categories.categories
-    ?.filter((c) => c.title === currentCategory)[0]
-    ?.subCategory.filter((d) => d.subCategory === currentSubCategory)[0];
+  // let cat = categories.categories
+  //   ?.filter((c) => c.title === currentCategory)[0]
+  //   ?.subCategory.filter((d) => d.subCategory === currentSubCategory)[0];
 
-  console.log("product::", products);
+  // console.log("product::", products);
 
-  const myStyle = {
-    background: `url(${cat ? cat?.image.url : img})`,
-  };
-
-  console.log("myStyle::", myStyle);
+  // const myStyle = {
+  //   background: `url(${cat ? cat?.image.url : img})`,
+  // };
 
   const settings = {
     speed: 500,
@@ -72,7 +70,7 @@ const Menu = () => {
         breakpoint: 480,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
           // Infinity: false,
         },
       },
@@ -80,7 +78,7 @@ const Menu = () => {
   };
 
   return (
-    <section style={myStyle} className="menu">
+    <section className="menu">
       <div className="top__navbar">
         <Link to="/" className="home_link">
           <GiFlamingo className="icon flamingo" />
