@@ -10,9 +10,8 @@ import Food from "./food/Food";
 import Slick from "react-slick";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Grid } from "swiper/modules";
-import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "../../redux/category/categorySlice";
-import { getProducts } from "../../redux/product/productSlice";
+import { useSelector } from "react-redux";
+
 // import img from "../../assets/images/bg.jpg";
 
 // Import Swiper styles
@@ -20,11 +19,6 @@ import "swiper/css";
 import "swiper/css/grid";
 
 const Menu = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getProducts());
-    dispatch(getCategories());
-  }, [dispatch]);
   const [currentCategory, setCurrentCategory] = useState("Yemek");
   const [currentSubCategory, setCurrentSubCategory] = useState("Kahvaltı");
 
