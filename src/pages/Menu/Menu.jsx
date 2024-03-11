@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./menu.css";
 import { GiFlamingo } from "react-icons/gi";
 import { TiHome } from "react-icons/ti";
