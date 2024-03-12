@@ -51,7 +51,12 @@ const Welcome = () => {
         <div className="title">
           <h1>Hoşgeldiniz</h1>
           <div className="start">
-            <p>Yeni lezzetler ve tadların adresi...</p>
+            <p>
+              Sevgili misafirlerimiz, Flamingo, şehrimizin en keyifli buluşma
+              noktası olarak hizmetinizde! Sizleri, lezzet dolu bir deneyim ve
+              eğlenceli aktivitelerle dolu bir atmosferde ağırlamaktan büyük
+              mutluluk duyuyoruz....
+            </p>
             <Link className="btn" to="/food">
               Başla
             </Link>
