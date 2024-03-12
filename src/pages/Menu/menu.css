@@ -1,12 +1,12 @@
 .menu {
   height: 100vh;
-  width: 100vw;
-  background: linear-gradient(
+  width: auto;
+  /* background: linear-gradient(
     45deg,
     rgb(8, 0, 100) 32%,
     rgba(131, 0, 39, 0.72) 100%
-  );
-  /* background: url("../../assets/images/img/bg_mobile.jpg"); */
+  ); */
+  background: url("../../assets/images/img/bg_mobile.jpg");
   backdrop-filter: brightness(0.7rem);
   -webkit-backdrop-filter: brightness(40px);
   background-repeat: no-repeat;
@@ -140,7 +140,7 @@ input {
 
 .food {
   width: 100% !important;
-  height: calc(100vh - 7.5rem) !important;
+  height: calc(100vh - 6rem) !important;
   margin: auto;
   position: absolute;
   top: 2.4rem !important;
@@ -200,10 +200,10 @@ input {
   box-shadow: 0px 0px 8px 0px rgb(142, 2, 160);
   margin-left: 0.5rem;
 }
-
+/* 
 button {
   display: none !important;
-}
+} */
 
 /* MEDİA SCREEN */
 
@@ -229,6 +229,11 @@ button {
 }
 
 @media screen and (max-width: 600px) {
+  .menu {
+    /* Mobil cihazlarda menüyü ekranın tamamını kaplayacak şekilde yeniden boyutlandır */
+    height: 100vh;
+    width: 100%;
+  }
   .food {
     top: calc(3rem - 10px);
   }
