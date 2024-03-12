@@ -4,11 +4,13 @@ import { getProducts } from "../../redux/product/productSlice";
 import bg from "../../assets/images/bg_hero.jpg";
 import bg1 from "../../assets/images/img/bg_breakfast.jpg";
 import h3 from "../../assets/images/img/h3.png";
-import { useDispatch } from "react-redux";
+import load from "../../assets/Infinity-1s-200px.svg";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import Loading from "../Menu/Loading/Loading";
 
 const Welcome = () => {
   const dispatch = useDispatch();
@@ -20,7 +22,20 @@ const Welcome = () => {
   const isDesktopOrLaptop = useMediaQuery({
     query: "(max-width:900px)",
   });
-  return (
+
+  const categoryLoading = useSelector((state) => state.categories.loading);
+  const productLoading = useSelector((state) => state.products.loading);
+
+  let loading = categoryLoading || productLoading;
+
+  const component = loading ? <Loading /> : <></>;
+
+  console.log("productLoading::", productLoading);
+  console.log("categoryLoading::", categoryLoading);
+
+  return loading ? (
+    <Loading />
+  ) : (
     <section className="container">
       <div className="bg">
         <div className="bg-trans"></div>
@@ -42,10 +57,9 @@ const Welcome = () => {
           </div>
         </div>
 
-        <img src={h3} alt="h3" />
+        <img src={loading ? load : h3} alt="h3" />
       </div>
     </section>
   );
 };
-
 export default Welcome;
