@@ -64,7 +64,7 @@ const Menu = () => {
         breakpoint: 480,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
           // Infinity: false,
         },
       },
@@ -72,7 +72,7 @@ const Menu = () => {
         breakpoint: 380,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
           // Infinity: false,
         },
       },
