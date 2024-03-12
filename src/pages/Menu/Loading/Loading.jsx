@@ -1,5 +1,4 @@
 import React from "react";
-import loading from "../../../assets/Infinity-1s-200px.svg";
 import bg from "../../../assets/images/bg_hero.jpg";
 import "./Loading.css";
 

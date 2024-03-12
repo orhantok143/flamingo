@@ -4,7 +4,6 @@ import { getProducts } from "../../redux/product/productSlice";
 import bg from "../../assets/images/bg_hero.jpg";
 import bg1 from "../../assets/images/img/bg_breakfast.jpg";
 import h3 from "../../assets/images/img/h3.png";
-import load from "../../assets/Infinity-1s-200px.svg";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useMediaQuery } from "react-responsive";
@@ -27,8 +26,6 @@ const Welcome = () => {
   const productLoading = useSelector((state) => state.products.loading);
 
   let loading = categoryLoading || productLoading;
-
-  const component = loading ? <Loading /> : <></>;
 
   console.log("productLoading::", productLoading);
   console.log("categoryLoading::", categoryLoading);
@@ -57,7 +54,7 @@ const Welcome = () => {
           </div>
         </div>
 
-        <img src={loading ? load : h3} alt="h3" />
+        <img src={h3} alt="h3" />
       </div>
     </section>
   );
