@@ -6,7 +6,7 @@
     rgb(8, 0, 100) 32%,
     rgba(131, 0, 39, 0.72) 100%
   ); */
-  background: url("../../assets/images/img/bg_mobile.jpg");
+  background: url("../../assets/images/img/bg_mobile2.jpg");
   backdrop-filter: brightness(0.7rem);
   -webkit-backdrop-filter: brightness(40px);
   background-repeat: no-repeat;
@@ -131,7 +131,7 @@ input {
 }
 
 .swiper-wrapper {
-  /* height: calc(3 * 10.8rem + 3.5rem) !important; */
+  height: calc(3 * 10.8rem + 3.5rem) !important;
   margin: 0.1rem auto;
 
   /* width: 97%; */
