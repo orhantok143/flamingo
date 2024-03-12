@@ -28,7 +28,8 @@ const Welcome = () => {
   const categoryError = useSelector((state) => state.categories.error);
   const productError = useSelector((state) => state.products.error);
 
-  let loading = categoryLoading || productLoading;
+  let loading =
+    categoryLoading || productLoading || categoryError || productError;
 
   console.log("productLoading::", productLoading);
   console.log("categoryLoading::", categoryLoading);
