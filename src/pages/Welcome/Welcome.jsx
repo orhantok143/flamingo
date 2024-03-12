@@ -28,8 +28,7 @@ const Welcome = () => {
   const categoryError = useSelector((state) => state.categories.error);
   const productError = useSelector((state) => state.products.error);
 
-  let loading =
-    categoryLoading || productLoading || categoryError || productError;
+  let loading = categoryLoading || productLoading;
 
   console.log("productLoading::", productLoading);
   console.log("categoryLoading::", categoryLoading);
@@ -52,10 +51,10 @@ const Welcome = () => {
           <h1>Hoşgeldiniz</h1>
           <div className="start">
             <p>
-              Sevgili misafirlerimiz, Flamingo, şehrimizin en keyifli buluşma
-              noktası olarak hizmetinizde! Sizleri, lezzet dolu bir deneyim ve
-              eğlenceli aktivitelerle dolu bir atmosferde ağırlamaktan büyük
-              mutluluk duyuyoruz....
+              "Flamingo'nun eşsiz atmosferinde, lezzetli yemekler ve serinletici
+              içeceklerle romantik bir buluşma için mükemmel bir mekan. Her bir
+              tatlı dokunuş, aşkın en güzel melodisini çalar, siz ve
+              sevdikleriniz için unutulmaz anlar sunar."
             </p>
             <Link className="btn" to="/food">
               Başla

@@ -36,39 +36,41 @@
 
 .container .hero {
   width: 80%;
+  /* height: 100%; */
   margin: 0 auto;
   position: absolute;
-  top: 14%;
+  top: 10%;
   left: 10%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* background: rgba(0, 0, 0, 0.348);
-  backdrop-filter: blur(2px);
-  padding: 1rem; */
 }
 
 .container .hero .title {
-  padding: 5rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 .container .hero .title h1 {
   -webkit-animation: slide-bottom 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-bottom 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  color: rgba(255, 255, 255, 0.69);
-  font-weight: 300;
+  color: rgba(255, 255, 255, 0.757);
 }
 
 .container .hero .title .start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
   -webkit-animation: slide-right 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-right 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .container .hero .title .start p {
-  color: #ffffffa1;
+  line-height: 18px;
+  color: #ffffffa9;
   font-weight: 300;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
 
 .container .hero .title .start .btn {
@@ -80,6 +82,7 @@
   border: solid rgba(0, 0, 0, 0.33) 1px;
   -webkit-animation: blink-1 6s infinite 0.1ms both;
   animation: blink-1 6s infinite 0.1ms both;
+  /* margin-top: 2rem; */
 }
 
 .container .hero .title .start .btn:hover {
@@ -180,21 +183,19 @@
 
 @media screen and (max-width: 900px) {
   .container .hero {
+    width: 100%;
+    left: 0;
     display: flex;
-    top: 4rem;
     flex-direction: column-reverse;
     align-items: center;
-    /* background: #cd2222; */
-    /* height: 100vh; */
   }
 
   .container .hero img {
-    width: 80%;
-    margin-bottom: 5rem;
+    width: 70%;
+    margin-bottom: 3rem;
   }
   .container .hero .title {
     align-items: center;
-    width: 75%;
   }
 
   .container .bg-trans {
@@ -202,13 +203,9 @@
   }
 
   .container .hero .title h1 {
-    margin-bottom: 4rem;
-    font-weight: 400;
+    margin-bottom: 1rem;
+    font-weight: 450;
   }
-  /* .container .bg {
-    filter: blur(4px);
-  } */
-
   .container .hero .title .start {
     text-align: center;
   }
