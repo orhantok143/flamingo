@@ -69,7 +69,7 @@ const Menu = () => {
         },
       },
       {
-        breakpoint: 400,
+        breakpoint: 380,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
