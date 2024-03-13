@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./menu.css";
 import { GiFlamingo } from "react-icons/gi";
 import { TiHome } from "react-icons/ti";
@@ -7,11 +7,19 @@ import { FaCoffee } from "react-icons/fa";
 import { GiCakeSlice } from "react-icons/gi";
 import { Link, NavLink } from "react-router-dom";
 import Food from "./food/Food";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories } from "../../redux/category/categorySlice";
+import { getProducts } from "../../redux/product/productSlice";
 
 const Menu = () => {
   const [currentCategory, setCurrentCategory] = useState("Yemek");
   const [currentSubCategory, setCurrentSubCategory] = useState("Kahvaltı");
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProducts());
+    dispatch(getCategories());
+  }, [dispatch]);
 
   const products = useSelector((state) =>
     state.products.products.product?.filter(
