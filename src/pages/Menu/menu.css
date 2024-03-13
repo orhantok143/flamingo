@@ -1,6 +1,6 @@
 .menu {
-  height: 100vh;
-  width: auto;
+  height: 100%;
+  width: 100vw;
   /* background: linear-gradient(
     45deg,
     rgb(8, 0, 100) 32%,
@@ -55,7 +55,7 @@
   box-shadow: 0px 0px 8px 0px rgb(142, 2, 160);
 }
 
-.top__navbar a {
+.top__navbar {
   padding: 0.2rem;
 }
 
@@ -130,14 +130,6 @@ input {
   color: rgba(228, 0, 140, 0.775);
 }
 
-.swiper-wrapper {
-  height: calc(3 * 10.8rem + 3.5rem) !important;
-  margin: 0.1rem auto;
-
-  /* width: 97%; */
-  /* margin: auto !important; */
-}
-
 .food {
   width: 100% !important;
   height: calc(100vh - 6rem) !important;
@@ -153,45 +145,45 @@ input {
 }
 
 .category {
-  width: 100%;
-  height: 2rem;
+  width: 95%;
+  height: 3rem;
+
   position: absolute;
-  background: transparent;
   top: 1rem;
   left: 50%;
   transform: translate(-50%);
-  text-align: center;
-  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  align-items: center;
+  justify-content: space-between;
+  /* row-gap: 2rem; */
   border-radius: 2rem;
 }
 
 .category a {
-  /* width: 1rem; */
+  display: flex;
   color: rgb(209, 210, 211);
-  padding: 0.4rem 0;
-  /* background: #0000007b; */
-  /* border: 1px solid rgba(255, 255, 255, 0.646); */
+  padding: 0.4rem 0.5rem;
   border-radius: 1rem;
   font-size: 0.8rem;
   white-space: nowrap;
 }
+
 .food .category .active {
   background: #980075;
   border: 1px solid rgb(185, 185, 185);
 }
 
-.products {
+/* .products {
   width: calc(3 * 6.8rem + 4rem);
-  /* */
   position: relative;
-  top: 2.6rem !important;
   display: grid;
-  /* grid-template-columns: repeat(6, 1fr) !important; */
+  grid-template-columns: repeat(6, 1fr) !important;
   margin: auto;
   margin-top: 0.5rem;
   gap: 0.4rem 0;
   z-index: -1 !important;
-}
+} */
 
 .flamingo {
   color: rgba(255, 0, 179, 0.815);
@@ -200,28 +192,27 @@ input {
   box-shadow: 0px 0px 8px 0px rgb(142, 2, 160);
   margin-left: 0.5rem;
 }
-/* 
-button {
-  display: none !important;
-} */
+.product_grid {
+  margin-top: 4.2rem;
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  gap: 1rem;
+}
 
 /* MEDİA SCREEN */
-
 @media screen and (max-width: 900px) {
   .top__navbar {
     top: 0;
     width: 100%;
     border-radius: 0;
   }
-  /* .flamingo {
-    margin-left: 0.5rem;
-  } */
   .search_item {
     padding-right: 1rem;
   }
 
-  .products {
-    grid-template-columns: repeat(4, 1fr);
+  .product_grid {
+    grid-template-columns: repeat(5, 1fr);
+    transition: all 200ms ease-in-out;
   }
   .food {
     top: calc(4rem - 10px);
@@ -238,8 +229,7 @@ button {
     top: calc(3rem - 10px);
   }
 
-  .products {
-    grid-template-columns: repeat(3, 1fr);
-    /* gap: auto; */
+  .product_grid {
+    grid-template-columns: repeat(3, auto);
   }
 }
