@@ -131,13 +131,11 @@ input {
 }
 
 .food {
-  width: 100% !important;
-  height: calc(100vh - 6rem) !important;
-  margin: auto;
+  width: 100vw;
+  height: calc(100vh - 6rem);
   position: absolute;
-  top: 2.4rem !important;
   left: 50%;
-  /* margin: 0 auto; */
+  margin: 0 auto;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
@@ -145,23 +143,20 @@ input {
 }
 
 .category {
-  width: 95%;
-  height: 3rem;
-
+  width: 100%;
   position: absolute;
-  top: 1rem;
+  top: 1.2rem;
   left: 50%;
   transform: translate(-50%);
   display: grid;
-  grid-template-columns: repeat(3, auto);
-  align-items: center;
-  justify-content: space-between;
+  grid-template-columns: repeat(4, auto);
+  text-align: center;
   /* row-gap: 2rem; */
   border-radius: 2rem;
+  transition: transform 0.3s ease;
 }
 
 .category a {
-  display: flex;
   color: rgb(209, 210, 211);
   padding: 0.4rem 0.5rem;
   border-radius: 1rem;
@@ -193,10 +188,12 @@ input {
   margin-left: 0.5rem;
 }
 .product_grid {
+  width: 100%;
   margin-top: 4.2rem;
   display: grid;
   grid-template-columns: repeat(7, auto);
-  gap: 1rem;
+  /* gap: 1rem; */
+  transition: transform 0.3s ease;
 }
 
 /* MEDİA SCREEN */
@@ -212,7 +209,6 @@ input {
 
   .product_grid {
     grid-template-columns: repeat(5, 1fr);
-    transition: all 200ms ease-in-out;
   }
   .food {
     top: calc(4rem - 10px);
@@ -224,9 +220,6 @@ input {
     /* Mobil cihazlarda menüyü ekranın tamamını kaplayacak şekilde yeniden boyutlandır */
     height: 100vh;
     width: 100%;
-  }
-  .food {
-    top: calc(3rem - 10px);
   }
 
   .product_grid {
