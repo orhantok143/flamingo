@@ -24,6 +24,7 @@ const Menu = () => {
     dispatch(getProducts());
     dispatch(getCategories());
   }, [dispatch]);
+
   const [currentCategory, setCurrentCategory] = useState("Yemek");
   const [currentSubCategory, setCurrentSubCategory] = useState("Kahvaltı");
 
@@ -33,18 +34,6 @@ const Menu = () => {
     )
   );
   const categories = useSelector((state) => state.categories.categories);
-
-  // let cat = categories.categories
-  //   ?.filter((c) => c.title === currentCategory)[0]
-  //   ?.subCategory.filter((d) => d.subCategory === currentSubCategory)[0];
-
-  // console.log("product::", products);
-
-  // const myStyle = {
-  //   background: `url(${cat ? cat?.image.url : img})`,
-  // };
-
-  // console.log("myStyle::", myStyle);
 
   const settings = {
     speed: 500,
@@ -78,6 +67,25 @@ const Menu = () => {
     ],
   };
 
+  // Ürünleri 3x3 grid'e yerleştirmek için fonksiyon
+  const renderProductsInGrid = (productList) => {
+    const renderedGrids = [];
+    let remainingProducts = productList;
+
+    // Her bir 3x3 grid için işlem yap
+    while (remainingProducts.length > 0) {
+      const currentGridProducts = remainingProducts.splice(0, 9); // İlk 9 ürünü al
+      const gridContent = currentGridProducts.map((product) => (
+        <SwiperSlide key={product._id}>
+          <Food data={product} />
+        </SwiperSlide>
+      ));
+      renderedGrids.push(gridContent); // 3x3 grid içeriğini oluştur
+    }
+
+    return renderedGrids;
+  };
+
   return (
     <section className="menu">
       <div className="top__navbar">
@@ -90,7 +98,7 @@ const Menu = () => {
         </div>
       </div>
 
-      <div className="food ">
+      <div className="food">
         <div className="category ">
           <Slick {...settings}>
             {categories.categories
@@ -107,12 +115,13 @@ const Menu = () => {
           </Slick>
         </div>
 
+        {/* Ürünleri 3x3 grid'e yerleştir */}
         <Swiper
           slidesPerView={3}
-          slidesPerGroupSkip={3}
+          slidesPerGroupSkip={1}
           grid={{
             rows: 3,
-            // culomns: 3,
+            columns: 3,
             fill: "row",
           }}
           spaceBetween={3}
@@ -122,13 +131,9 @@ const Menu = () => {
           modules={[Grid]}
           className="products"
         >
-          {products
-            ?.filter((p) => p.subCategory === currentSubCategory)
-            .map((product) => (
-              <SwiperSlide key={product._id}>
-                <Food data={product} />
-              </SwiperSlide>
-            ))}
+          {renderProductsInGrid(
+            products?.filter((p) => p.subCategory === currentSubCategory)
+          )}
         </Swiper>
 
         <div className="buttom__navbar">
