@@ -79,7 +79,7 @@ const Menu = () => {
   };
 
   return (
-    <section style={myStyle} className="menu">
+    <section className="menu">
       <div className="top__navbar">
         <Link to="/" className="home_link">
           <GiFlamingo className="icon flamingo" />
