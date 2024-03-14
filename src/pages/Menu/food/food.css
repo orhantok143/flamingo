@@ -5,7 +5,6 @@
   background: rgba(13, 13, 13, 0.608);
   border-radius: 1rem;
   backdrop-filter: blur(8px);
-  margin: auto;
   padding: 0.8rem;
   display: flex;
   flex-direction: column;
@@ -13,6 +12,7 @@
   -webkit-box-shadow: 0px 0px 5px 0px rgb(228, 228, 228);
   -moz-box-shadow: 0px 0px 1.5px 0px rgb(228, 228, 228);
   box-shadow: 0px 0px 1.5px 0.8px rgb(228, 228, 228);
+  margin: 0.15rem auto;
 }
 .card .card_img {
   display: inline;
