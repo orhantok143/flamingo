@@ -34,11 +34,11 @@ const Menu = () => {
   );
   const categories = useSelector((state) => state.categories.categories);
 
-  let cat = categories.categories
-    ?.filter((c) => c.title === currentCategory)[0]
-    ?.subCategory.filter((d) => d.subCategory === currentSubCategory)[0];
+  // let cat = categories.categories
+  //   ?.filter((c) => c.title === currentCategory)[0]
+  //   ?.subCategory.filter((d) => d.subCategory === currentSubCategory)[0];
 
-  console.log("product::", products);
+  // console.log("product::", products);
 
   // const myStyle = {
   //   background: `url(${cat ? cat?.image.url : img})`,
