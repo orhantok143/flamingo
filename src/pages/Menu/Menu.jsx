@@ -13,7 +13,6 @@ import { Grid } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../../redux/category/categorySlice";
 import { getProducts } from "../../redux/product/productSlice";
-import img from "../../assets/images/bg.jpg";
 
 // Import Swiper styles
 import "swiper/css";
@@ -41,11 +40,11 @@ const Menu = () => {
 
   console.log("product::", products);
 
-  const myStyle = {
-    background: `url(${cat ? cat?.image.url : img})`,
-  };
+  // const myStyle = {
+  //   background: `url(${cat ? cat?.image.url : img})`,
+  // };
 
-  console.log("myStyle::", myStyle);
+  // console.log("myStyle::", myStyle);
 
   const settings = {
     speed: 500,
