@@ -67,25 +67,6 @@ const Menu = () => {
     ],
   };
 
-  // Ürünleri 3x3 grid'e yerleştirmek için fonksiyon
-  const renderProductsInGrid = (productList) => {
-    const renderedGrids = [];
-    let remainingProducts = productList;
-
-    // Her bir 3x3 grid için işlem yap
-    while (remainingProducts.length > 0) {
-      const currentGridProducts = remainingProducts.splice(0, 9); // İlk 9 ürünü al
-      const gridContent = currentGridProducts.map((product) => (
-        <SwiperSlide key={product._id}>
-          <Food data={product} />
-        </SwiperSlide>
-      ));
-      renderedGrids.push(gridContent); // 3x3 grid içeriğini oluştur
-    }
-
-    return renderedGrids;
-  };
-
   return (
     <section className="menu">
       <div className="top__navbar">
@@ -115,7 +96,6 @@ const Menu = () => {
           </Slick>
         </div>
 
-        {/* Ürünleri 3x3 grid'e yerleştir */}
         <Swiper
           slidesPerView={3}
           slidesPerGroupSkip={1}
@@ -131,9 +111,14 @@ const Menu = () => {
           modules={[Grid]}
           className="products"
         >
-          {renderProductsInGrid(
-            products?.filter((p) => p.subCategory === currentSubCategory)
-          )}
+          {products
+            ?.filter((p) => p.subCategory === currentSubCategory)
+
+            .map((product) => (
+              <SwiperSlide key={product._id}>
+                <Food data={product} />
+              </SwiperSlide>
+            ))}
         </Swiper>
 
         <div className="buttom__navbar">
