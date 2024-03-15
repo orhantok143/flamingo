@@ -145,7 +145,6 @@ input {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(6px);
-  /* background: transparent; */
   top: 0;
   left: 50%;
   transform: translate(-50%);
@@ -156,13 +155,18 @@ input {
 
 .category a {
   /* width: 1rem; */
-  color: rgb(209, 210, 211);
-  padding: 0.5rem 0;
+  color: rgb(192, 192, 192);
+  padding: 0.4rem 0;
   /* background: #0000007b; */
   /* border: 1px solid rgba(255, 255, 255, 0.646); */
   border-radius: 1rem;
   font-size: 0.8rem;
   white-space: nowrap;
+}
+
+.category .active {
+  background-color: rgba(228, 0, 140, 0.775);
+  color: #dddddd;
 }
 
 .products {

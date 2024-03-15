@@ -86,6 +86,11 @@ const Menu = () => {
               ?.filter((c) => c.title === currentCategory)[0]
               ?.subCategory.map((category, i) => (
                 <Link
+                  className={
+                    currentSubCategory === category.subCategory
+                      ? " active "
+                      : ""
+                  }
                   key={i}
                   to=""
                   onClick={() => setCurrentSubCategory(category.subCategory)}
