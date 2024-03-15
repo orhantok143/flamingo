@@ -128,7 +128,7 @@ input {
 
 .food {
   width: 100% !important;
-  height: calc(100vh - 10rem) !important;
+  height: calc(100vh - 6rem) !important;
   margin: auto;
   position: absolute;
   top: 3rem !important;
