@@ -79,14 +79,14 @@ input {
   outline: none;
   color: #f3f3f3c6;
   &:focus {
-    border-color: #007bff;
+    border-color: #450079;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
   }
 
   /* Geçersiz Stili */
   &.invalid {
-    border-color: #ff0000;
+    border-color: #9f00b8;
   }
 
   /* Placeholder Stili */
