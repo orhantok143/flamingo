@@ -70,6 +70,7 @@
 }
 
 ._search {
+  width: 70%;
   padding: 0.4rem;
   border-radius: 3rem;
   background-color: transparent;
@@ -81,8 +82,6 @@
 
   &:focus {
     border-color: #450079;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
   }
 
   /* Geçersiz Stili */
