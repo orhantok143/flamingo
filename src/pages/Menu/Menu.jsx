@@ -90,7 +90,7 @@ const Menu = () => {
             placeholder="Ara"
             onChange={(e) => handleOnChange(e)}
           />
-          <p>Masa No: B-7</p>
+          {/* <p>Masa No: B-7</p> */}
         </div>
       </div>
 
