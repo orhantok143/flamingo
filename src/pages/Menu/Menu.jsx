@@ -85,6 +85,7 @@ const Menu = () => {
         </Link>
         <div className="search_item">
           <input
+            className="_search"
             type="search"
             placeholder="Ara"
             onChange={(e) => handleOnChange(e)}
