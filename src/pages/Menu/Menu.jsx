@@ -5,21 +5,27 @@ import { TiHome } from "react-icons/ti";
 import { TbToolsKitchen2 } from "react-icons/tb";
 import { FaCoffee } from "react-icons/fa";
 import { GiCakeSlice } from "react-icons/gi";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Food from "./food/Food";
 import Slick from "react-slick";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Grid } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../../redux/category/categorySlice";
-import { getProducts } from "../../redux/product/productSlice";
+import {
+  getProducts,
+  setDetailProduct,
+} from "../../redux/product/productSlice";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/grid";
+import { selectCategories, selectProducts } from "../../utilis/selector";
 
 const Menu = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getCategories());
@@ -27,13 +33,20 @@ const Menu = () => {
 
   const [currentCategory, setCurrentCategory] = useState("Yemek");
   const [currentSubCategory, setCurrentSubCategory] = useState("Kahvaltı");
+  const [search, setSearch] = useState("");
 
-  const products = useSelector((state) =>
-    state.products.products.product?.filter(
-      (p) => p.category === currentCategory
-    )
-  );
-  const categories = useSelector((state) => state.categories.categories);
+  const products = useSelector(selectProducts);
+
+  const categories = useSelector(selectCategories);
+
+  const handleOnChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleClick = (data) => {
+    dispatch(setDetailProduct(data));
+    navigate("../detail");
+  };
 
   const settings = {
     speed: 500,
@@ -52,16 +65,13 @@ const Menu = () => {
         settings: {
           slidesToShow: 4,
           slidesToScroll: 2,
-          initialSlide: 1,
-          // Infinity: false,
         },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
-          // Infinity: false,
+          slidesToScroll: 2,
         },
       },
     ],
@@ -74,7 +84,11 @@ const Menu = () => {
           <GiFlamingo className="icon flamingo" />
         </Link>
         <div className="search_item">
-          <input type="search" placeholder="Ara" />
+          <input
+            type="search"
+            placeholder="Ara"
+            onChange={(e) => handleOnChange(e)}
+          />
           <p>Masa No: B-7</p>
         </div>
       </div>
@@ -116,11 +130,17 @@ const Menu = () => {
           modules={[Grid]}
           className="products"
         >
+          {/* .filter((p) => p.subCategory === currentSubCategory) */}
           {products
             ?.filter((p) => p.subCategory === currentSubCategory)
-
+            ?.filter((p) =>
+              p.title.trim().toLowerCase().includes(search.trim().toLowerCase())
+            )
             .map((product) => (
-              <SwiperSlide key={product._id}>
+              <SwiperSlide
+                key={product._id}
+                onClick={() => handleClick(product)}
+              >
                 <Food data={product} />
               </SwiperSlide>
             ))}
@@ -128,7 +148,7 @@ const Menu = () => {
 
         <div className="buttom__navbar">
           <NavLink to="/">
-            <TiHome values="" className="icon" />
+            <TiHome value="" className="icon" />
           </NavLink>
           <NavLink to="/food">
             <TbToolsKitchen2

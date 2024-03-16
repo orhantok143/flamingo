@@ -5,11 +5,16 @@ import bg from "../../assets/images/bg_hero.jpg";
 import bg1 from "../../assets/images/img/bg_breakfast.jpg";
 import h3 from "../../assets/images/img/h3.png";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import Loading from "../Menu/Loading/Loading";
+import {
+  selectCategoryLoading,
+  selectProductLoading,
+  selectCategoryError,
+  selectProductError,
+} from "../../utilis/selector";
 
 const Welcome = () => {
   const dispatch = useDispatch();
@@ -22,17 +27,20 @@ const Welcome = () => {
     query: "(max-width:900px)",
   });
 
-  const categoryLoading = useSelector((state) => state.categories.loading);
-  const productLoading = useSelector((state) => state.products.loading);
+  // Kategori yükleme durumu
+  const categoryLoading = useSelector(selectCategoryLoading);
 
-  const categoryError = useSelector((state) => state.categories.error);
-  const productError = useSelector((state) => state.products.error);
+  // Ürün yükleme durumu
+  const productLoading = useSelector(selectProductLoading);
+
+  // Kategori hata durumu
+  const categoryError = useSelector(selectCategoryError);
+
+  // Ürün hata durumu
+  const productError = useSelector(selectProductError);
 
   let loading =
     categoryLoading || productLoading || categoryError || productError;
-
-  console.log("productLoading::", productLoading);
-  console.log("categoryLoading::", categoryLoading);
 
   return loading ? (
     <Loading />

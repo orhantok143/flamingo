@@ -5,11 +5,11 @@ import "./Loading.css";
 const Loading = () => {
   return (
     <>
-      <div class="background-container">
-        <img src={bg} alt="Background" class="background-image" />
-        <div class="glassmorphism"></div>
-        <div class="loader-wrapper">
-          <div class="loader"></div>
+      <div className="background-container">
+        <img src={bg} alt="Background" className="background-image" />
+        <div className="glassmorphism"></div>
+        <div className="loader-wrapper">
+          <div className="loader"></div>
         </div>
       </div>
     </>
