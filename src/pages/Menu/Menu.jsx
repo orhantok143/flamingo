@@ -155,7 +155,10 @@ const Menu = () => {
           <NavLink to="/">
             <TiHome value="" className="icon" />
           </NavLink>
-          <NavLink to="/food">
+          <Link
+            to="/food"
+            className={currentCategory === "Yemek" ? " active " : ""}
+          >
             <TbToolsKitchen2
               onClick={() => {
                 dispatch(setCategory("Yemek"));
@@ -163,8 +166,11 @@ const Menu = () => {
               }}
               className="icon"
             />
-          </NavLink>
-          <NavLink to="/bar">
+          </Link>
+          <Link
+            to="/bar"
+            className={currentCategory === "İçecek" ? " active " : ""}
+          >
             <FaCoffee
               onClick={() => {
                 dispatch(setCategory("İçecek"));
@@ -172,8 +178,11 @@ const Menu = () => {
               }}
               className="icon"
             />
-          </NavLink>
-          <NavLink to="/sweet">
+          </Link>
+          <Link
+            to="/sweet"
+            className={currentCategory === "Tatlı" ? " active " : ""}
+          >
             <GiCakeSlice
               onClick={() => {
                 dispatch(setCategory("Tatlı"));
@@ -181,7 +190,7 @@ const Menu = () => {
               }}
               className="icon"
             />
-          </NavLink>
+          </Link>
         </div>
       </div>
     </section>
