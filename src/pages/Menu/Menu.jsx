@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./menu.css";
 import { GiFlamingo } from "react-icons/gi";
 import { TiHome } from "react-icons/ti";
@@ -11,8 +11,11 @@ import Slick from "react-slick";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Grid } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
-// import { getCategories } from "../../redux/category/categorySlice";
-import { setDetailProduct } from "../../redux/product/productSlice";
+import { getCategories } from "../../redux/category/categorySlice";
+import {
+  getProducts,
+  setDetailProduct,
+} from "../../redux/product/productSlice";
 
 // Import Swiper styles
 import "swiper/css";
@@ -27,15 +30,22 @@ import {
   setCategory,
   setSubCategory,
 } from "../../redux/category/categorySlice";
+import {
+  selectCategoryLoading,
+  selectProductLoading,
+  selectCategoryError,
+  selectProductError,
+} from "../../utilis/selector";
+import Loading from "./Loading/Loading";
 
 const Menu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   dispatch(getProducts());
-  //   dispatch(getCategories());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getProducts());
+    dispatch(getCategories());
+  }, [dispatch]);
 
   const [search, setSearch] = useState("");
 
@@ -51,6 +61,21 @@ const Menu = () => {
       : products.filter((p) => p.subCategory === currentSubCategory);
 
   const categories = useSelector(selectCategories);
+
+  // Kategori yükleme durumu
+  const categoryLoading = useSelector(selectCategoryLoading);
+
+  // Ürün yükleme durumu
+  const productLoading = useSelector(selectProductLoading);
+
+  // Kategori hata durumu
+  const categoryError = useSelector(selectCategoryError);
+
+  // Ürün hata durumu
+  const productError = useSelector(selectProductError);
+
+  let loading =
+    categoryLoading || productLoading || categoryError || productError;
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);
@@ -90,7 +115,9 @@ const Menu = () => {
     ],
   };
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <section className="menu">
       <div className="top__navbar">
         <Link to="/" className="home_link">
