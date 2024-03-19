@@ -31,7 +31,7 @@ const Menu = () => {
   const [search, setSearch] = useState("");
 
   // const categories = useSelector(selectCategories);
-  const categories = JSON.parse(localStorage.getItem("Categories")).categories;
+  const categories = JSON.parse(localStorage.getItem("Categories"));
 
   // const products = useSelector(selectProducts);
   const products = JSON.parse(localStorage.getItem("Products"));
