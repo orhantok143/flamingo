@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./menu.css";
 import { GiFlamingo } from "react-icons/gi";
 import { TiHome } from "react-icons/ti";
@@ -11,11 +11,8 @@ import Slick from "react-slick";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Grid } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "../../redux/category/categorySlice";
-import {
-  getProducts,
-  setDetailProduct,
-} from "../../redux/product/productSlice";
+// import { getCategories } from "../../redux/category/categorySlice";
+import { setDetailProduct } from "../../redux/product/productSlice";
 
 // Import Swiper styles
 import "swiper/css";
@@ -26,16 +23,23 @@ const Menu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(getProducts());
-    dispatch(getCategories());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getProducts());
+  //   dispatch(getCategories());
+  // }, [dispatch]);
 
   const [currentCategory, setCurrentCategory] = useState("Yemek");
   const [currentSubCategory, setCurrentSubCategory] = useState("Kahvaltı");
   const [search, setSearch] = useState("");
 
   const products = useSelector(selectProducts);
+
+  const p =
+    search !== ""
+      ? products.filter((p) =>
+          p.title.trim().toLowerCase().includes(search.trim().toLowerCase())
+        )
+      : products.filter((p) => p.subCategory === currentSubCategory);
 
   const categories = useSelector(selectCategories);
 
@@ -131,20 +135,11 @@ const Menu = () => {
           modules={[Grid]}
           className="products"
         >
-          {/* .filter((p) => p.subCategory === currentSubCategory) */}
-          {products
-            ?.filter((p) => p.subCategory === currentSubCategory)
-            ?.filter((p) =>
-              p.title.trim().toLowerCase().includes(search.trim().toLowerCase())
-            )
-            .map((product) => (
-              <SwiperSlide
-                key={product._id}
-                onClick={() => handleClick(product)}
-              >
-                <Food data={product} />
-              </SwiperSlide>
-            ))}
+          {p.map((product) => (
+            <SwiperSlide key={product._id} onClick={() => handleClick(product)}>
+              <Food data={product} />
+            </SwiperSlide>
+          ))}
         </Swiper>
 
         <div className="buttom__navbar">
@@ -185,3 +180,8 @@ const Menu = () => {
 };
 
 export default Menu;
+
+// ?.filter((p) => p.subCategory === currentSubCategory)
+// ?.filter((p) =>
+//   p.title.trim().toLowerCase().includes(search.trim().toLowerCase())
+// )
