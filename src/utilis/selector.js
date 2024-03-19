@@ -16,3 +16,7 @@ export const selectProducts = state => state.products.products.product
 
 
 export const selectCategories = (state) => state.categories.categories
+
+
+export const setCurrentCategory = (state) => state.categories.currentCategory
+export const setCurrentSubCategory = (state) => state.categories.currentSubCategory

@@ -18,6 +18,8 @@ export const getCategories = createAsyncThunk('getCategorys', async () => {
 
 const initialState = {
     categories: [],
+    currentCategory: "Yemek",
+    currentSubCategory: "Kahvaltı",
     loading: "false",
     sucsess: "false",
     error: "false"
@@ -28,7 +30,15 @@ const initialState = {
 const CategorySlice = createSlice({
     name: 'category',
     initialState,
-    reducers: {},
+
+    reducers: {
+        setCategory: (state, action) => {
+            return { ...state, currentCategory: action.payload };
+        },
+        setSubCategory: (state, action) => {
+            return { ...state, currentSubCategory: action.payload };
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getCategories.pending, (state) => {
@@ -51,4 +61,6 @@ const CategorySlice = createSlice({
     },
 });
 
+
+export const { setCategory, setSubCategory } = CategorySlice.actions;
 export default CategorySlice.reducer;

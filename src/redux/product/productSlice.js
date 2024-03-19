@@ -16,6 +16,7 @@ export const getProducts = createAsyncThunk('getProducts', async () => {
 const initialState = {
     products: [],
     detailProduct: "",
+
     loading: "false",
     sucsess: "false",
     error: "false"

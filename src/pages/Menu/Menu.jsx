@@ -17,7 +17,16 @@ import { setDetailProduct } from "../../redux/product/productSlice";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/grid";
-import { selectCategories, selectProducts } from "../../utilis/selector";
+import {
+  selectCategories,
+  selectProducts,
+  setCurrentCategory,
+  setCurrentSubCategory,
+} from "../../utilis/selector";
+import {
+  setCategory,
+  setSubCategory,
+} from "../../redux/category/categorySlice";
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -28,11 +37,11 @@ const Menu = () => {
   //   dispatch(getCategories());
   // }, [dispatch]);
 
-  const [currentCategory, setCurrentCategory] = useState("Yemek");
-  const [currentSubCategory, setCurrentSubCategory] = useState("Kahvaltı");
   const [search, setSearch] = useState("");
 
   const products = useSelector(selectProducts);
+  const currentCategory = useSelector(setCurrentCategory);
+  const currentSubCategory = useSelector(setCurrentSubCategory);
 
   const p =
     search !== ""
@@ -112,7 +121,7 @@ const Menu = () => {
                   }
                   key={i}
                   to=""
-                  onClick={() => setCurrentSubCategory(category.subCategory)}
+                  onClick={() => dispatch(setSubCategory(category.subCategory))}
                 >
                   {category.subCategory}
                 </Link>
@@ -149,8 +158,8 @@ const Menu = () => {
           <NavLink to="/food">
             <TbToolsKitchen2
               onClick={() => {
-                setCurrentCategory("Yemek");
-                setCurrentSubCategory("Kahvaltı");
+                dispatch(setCategory("Yemek"));
+                dispatch(setSubCategory("Kahvaltı"));
               }}
               className="icon"
             />
@@ -158,8 +167,8 @@ const Menu = () => {
           <NavLink to="/bar">
             <FaCoffee
               onClick={() => {
-                setCurrentCategory("İçecek");
-                setCurrentSubCategory("Çaylar");
+                dispatch(setCategory("İçecek"));
+                dispatch(setSubCategory("Çaylar"));
               }}
               className="icon"
             />
@@ -167,8 +176,8 @@ const Menu = () => {
           <NavLink to="/sweet">
             <GiCakeSlice
               onClick={() => {
-                setCurrentCategory("Tatlı");
-                setCurrentSubCategory("Sütlü");
+                dispatch(setCategory("Tatlı"));
+                dispatch(setSubCategory("Sütlü"));
               }}
               className="icon"
             />
@@ -180,8 +189,3 @@ const Menu = () => {
 };
 
 export default Menu;
-
-// ?.filter((p) => p.subCategory === currentSubCategory)
-// ?.filter((p) =>
-//   p.title.trim().toLowerCase().includes(search.trim().toLowerCase())
-// )
