@@ -41,26 +41,18 @@ import Loading from "./Loading/Loading";
 const Menu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getCategories());
   }, [dispatch]);
 
-  const [search, setSearch] = useState("");
-
+  const categories = useSelector(selectCategories);
   const products = useSelector(selectProducts);
+
   const currentCategory = useSelector(setCurrentCategory);
   const currentSubCategory = useSelector(setCurrentSubCategory);
-
-  const p =
-    search !== ""
-      ? products.filter((p) =>
-          p.title.trim().toLowerCase().includes(search.trim().toLowerCase())
-        )
-      : products.filter((p) => p.subCategory === currentSubCategory);
-
-  const categories = useSelector(selectCategories);
 
   // Kategori yükleme durumu
   const categoryLoading = useSelector(selectCategoryLoading);
@@ -171,11 +163,23 @@ const Menu = () => {
           modules={[Grid]}
           className="products"
         >
-          {p.map((product) => (
-            <SwiperSlide key={product._id} onClick={() => handleClick(product)}>
-              <Food data={product} />
-            </SwiperSlide>
-          ))}
+          {search !== ""
+            ? products.filter((p) =>
+                p.title
+                  .trim()
+                  .toLowerCase()
+                  .includes(search.trim().toLowerCase())
+              )
+            : products
+                .filter((p) => p.subCategory === currentSubCategory)
+                .map((product) => (
+                  <SwiperSlide
+                    key={product._id}
+                    onClick={() => handleClick(product)}
+                  >
+                    <Food data={product} />
+                  </SwiperSlide>
+                ))}
         </Swiper>
 
         <div className="buttom__navbar">
