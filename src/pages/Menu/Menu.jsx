@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./menu.css";
 import { GiFlamingo } from "react-icons/gi";
 import { TiHome } from "react-icons/ti";
@@ -11,18 +11,12 @@ import Slick from "react-slick";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Grid } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "../../redux/category/categorySlice";
-import {
-  getProducts,
-  setDetailProduct,
-} from "../../redux/product/productSlice";
+// import { getCategories } from "../../redux/category/categorySlice";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/grid";
 import {
-  selectCategories,
-  selectProducts,
   setCurrentCategory,
   setCurrentSubCategory,
 } from "../../utilis/selector";
@@ -30,53 +24,39 @@ import {
   setCategory,
   setSubCategory,
 } from "../../redux/category/categorySlice";
-import {
-  selectCategoryLoading,
-  selectProductLoading,
-  selectCategoryError,
-  selectProductError,
-} from "../../utilis/selector";
-import Loading from "./Loading/Loading";
 
 const Menu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    dispatch(getProducts());
-    dispatch(getCategories());
-  }, [dispatch]);
+  // const categories = useSelector(selectCategories);
+  const categories = JSON.parse(localStorage.getItem("Categories")).categories;
 
-  const categories = useSelector(selectCategories);
-  const products = useSelector(selectProducts);
-
+  // const products = useSelector(selectProducts);
+  const products = JSON.parse(localStorage.getItem("Products"));
+  console.log(products);
+  console.log(categories);
   const currentCategory = useSelector(setCurrentCategory);
   const currentSubCategory = useSelector(setCurrentSubCategory);
-
-  // Kategori yükleme durumu
-  const categoryLoading = useSelector(selectCategoryLoading);
-
-  // Ürün yükleme durumu
-  const productLoading = useSelector(selectProductLoading);
-
-  // Kategori hata durumu
-  const categoryError = useSelector(selectCategoryError);
-
-  // Ürün hata durumu
-  const productError = useSelector(selectProductError);
-
-  let loading =
-    categoryLoading || productLoading || categoryError || productError;
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);
   };
 
   const handleClick = (data) => {
-    dispatch(setDetailProduct(data));
+    localStorage.setItem("myData", JSON.stringify(data));
     navigate("../detail");
   };
+
+  let p =
+    search !== ""
+      ? products.product.filter((p) =>
+          p.title.trim().toLowerCase().includes(search.trim().toLowerCase())
+        )
+      : products.product.filter((p) => p.subCategory === currentSubCategory);
+
+  console.log("P:", p);
 
   const settings = {
     speed: 500,
@@ -107,9 +87,7 @@ const Menu = () => {
     ],
   };
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <section className="menu">
       <div className="top__navbar">
         <Link to="/" className="home_link">
@@ -163,23 +141,11 @@ const Menu = () => {
           modules={[Grid]}
           className="products"
         >
-          {search !== ""
-            ? products.filter((p) =>
-                p.title
-                  .trim()
-                  .toLowerCase()
-                  .includes(search.trim().toLowerCase())
-              )
-            : products
-                .filter((p) => p.subCategory === currentSubCategory)
-                .map((product) => (
-                  <SwiperSlide
-                    key={product._id}
-                    onClick={() => handleClick(product)}
-                  >
-                    <Food data={product} />
-                  </SwiperSlide>
-                ))}
+          {p.map((product) => (
+            <SwiperSlide key={product._id} onClick={() => handleClick(product)}>
+              <Food data={product} />
+            </SwiperSlide>
+          ))}
         </Swiper>
 
         <div className="buttom__navbar">

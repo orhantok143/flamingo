@@ -9,6 +9,7 @@ import { baseURL } from '../baseUrl';
 
 export const getCategories = createAsyncThunk('getCategorys', async () => {
     const response = await getCategory(`${baseURL}/category/`);
+    localStorage.setItem("Categories", JSON.stringify(response.data))
     return response.data;
 });
 

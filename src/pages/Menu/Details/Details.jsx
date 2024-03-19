@@ -3,13 +3,13 @@ import "./details.css";
 import { FaRegHeart } from "react-icons/fa";
 // import { FaRegStar } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const Details = () => {
   const [filled, setFilled] = useState(false);
 
-  const data = useSelector((state) => state.products.detailProduct);
-
+  // const data = useSelector((state) => state.products.detailProduct);
+  const data = JSON.parse(localStorage.getItem("myData"));
   const handleLike = () => {
     setFilled(!filled);
   };
