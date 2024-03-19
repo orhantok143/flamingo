@@ -5,13 +5,12 @@ import { TiHome } from "react-icons/ti";
 import { TbToolsKitchen2 } from "react-icons/tb";
 import { FaCoffee } from "react-icons/fa";
 import { GiCakeSlice } from "react-icons/gi";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Food from "./food/Food";
 import Slick from "react-slick";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Grid } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
-// import { getCategories } from "../../redux/category/categorySlice";
 
 // Import Swiper styles
 import "swiper/css";
@@ -27,26 +26,16 @@ import {
 
 const Menu = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
-  // const categories = useSelector(selectCategories);
   const categories = JSON.parse(localStorage.getItem("Categories"));
-
-  // const products = useSelector(selectProducts);
   const products = JSON.parse(localStorage.getItem("Products"));
-  console.log(products);
-  console.log(categories);
+
   const currentCategory = useSelector(setCurrentCategory);
   const currentSubCategory = useSelector(setCurrentSubCategory);
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);
-  };
-
-  const handleClick = (data) => {
-    localStorage.setItem("myData", JSON.stringify(data));
-    navigate("../detail");
   };
 
   let p =
@@ -55,8 +44,6 @@ const Menu = () => {
           p.title.trim().toLowerCase().includes(search.trim().toLowerCase())
         )
       : products.product.filter((p) => p.subCategory === currentSubCategory);
-
-  console.log("P:", p);
 
   const settings = {
     speed: 500,
@@ -142,7 +129,7 @@ const Menu = () => {
           className="products"
         >
           {p.map((product) => (
-            <SwiperSlide key={product._id} onClick={() => handleClick(product)}>
+            <SwiperSlide key={product._id}>
               <Food data={product} />
             </SwiperSlide>
           ))}

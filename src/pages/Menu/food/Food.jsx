@@ -12,6 +12,10 @@ const Food = ({ data }) => {
     setFilled(!filled);
   };
 
+  const handleClick = (data) => {
+    localStorage.setItem("myData", JSON.stringify(data));
+  };
+
   return (
     <div className="card">
       <div className="card_img">
@@ -33,7 +37,11 @@ const Food = ({ data }) => {
           <div className="desc">
             <p>{data.description.substring(0, 30)}</p>
 
-            <Link className="btn" to="/detail">
+            <Link
+              className="btn"
+              to={`../${data._id}`}
+              onClick={() => handleClick(data)}
+            >
               Devamı
             </Link>
           </div>

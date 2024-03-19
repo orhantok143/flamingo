@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import "./details.css";
 import { FaRegHeart } from "react-icons/fa";
-// import { FaRegStar } from "react-icons/fa";
+import { IoIosArrowBack } from "react-icons/io";
 import { FaHeart } from "react-icons/fa";
-// import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Details = () => {
   const [filled, setFilled] = useState(false);
+  const navigator = useNavigate();
 
   // const data = useSelector((state) => state.products.detailProduct);
   const data = JSON.parse(localStorage.getItem("myData"));
   const handleLike = () => {
     setFilled(!filled);
+  };
+
+  const handleBack = () => {
+    navigator("");
   };
 
   return (
@@ -21,10 +26,13 @@ const Details = () => {
           <img src={data.image.secure_url} alt="pizza" />
           <span className="_like">
             {filled ? (
-              <FaHeart className="_bg" onClick={handleLike} />
+              <FaHeart className="bg" onClick={handleLike} />
             ) : (
               <FaRegHeart onClick={handleLike} />
             )}
+          </span>
+          <span className="_back">
+            <IoIosArrowBack onClick={handleBack} />
           </span>
         </div>
         <div className="_card_text">
@@ -36,24 +44,6 @@ const Details = () => {
             <div className="_desc">
               <p>{data.description}</p>
             </div>
-
-            {/* <div className="_rating">
-            <span className="_star">
-              <FaRegStar />
-            </span>
-            <span className="_star">
-              <FaRegStar />
-            </span>
-            <span className="_star">
-              <FaRegStar />
-            </span>
-            <span className="_star">
-              <FaRegStar />
-            </span>
-            <span className="_star">
-              <FaRegStar />
-            </span>
-          </div> */}
           </div>
         </div>
       </div>
