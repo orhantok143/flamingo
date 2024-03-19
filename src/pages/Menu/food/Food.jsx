@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./food.css";
-// import { FaRegStar } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";

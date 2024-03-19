@@ -16,7 +16,7 @@ const Details = () => {
   };
 
   const handleBack = () => {
-    navigator("");
+    navigator(-1);
   };
 
   return (
