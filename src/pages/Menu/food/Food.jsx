@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./food.css";
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaRegStar } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -45,7 +45,7 @@ const Food = ({ data }) => {
             </Link>
           </div>
 
-          {/* <div className="__rating">
+          <div className="__rating">
             <span className="star">
               <FaRegStar />
             </span>
@@ -61,7 +61,7 @@ const Food = ({ data }) => {
             <span className="star">
               <FaRegStar />
             </span>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

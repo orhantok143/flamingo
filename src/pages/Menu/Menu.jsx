@@ -28,11 +28,11 @@ const Menu = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
 
-  const categories = JSON.parse(localStorage.getItem("Categories"));
-  const products = JSON.parse(localStorage.getItem("Products"));
-
   const currentCategory = useSelector(setCurrentCategory);
   const currentSubCategory = useSelector(setCurrentSubCategory);
+
+  const categories = JSON.parse(localStorage.getItem("Categories"));
+  const products = JSON.parse(localStorage.getItem("Products"));
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);

@@ -1,4 +1,4 @@
-export const baseURL = "https://back-end-qowh.onrender.com/api/v1"
+export const baseURL = "https://flamingoapi-6122ecabdaa6.herokuapp.com/api/v1"
 // export const baseURL = "http://localhost:5000/api/v1"
 
 
